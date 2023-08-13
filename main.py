@@ -1,14 +1,20 @@
 from turtle import Turtle, Screen
 import random
-x_cors = [0, -20, -40]
-turtle_list = []
-for turtle_index in range(0,3):
- new_turtle = Turtle(shape="square")
- new_turtle.color("#E384FF")
- new_turtle.goto(x_cors[turtle_index], 0)
- turtle_list.append(new_turtle)
+from snake import Snake
+import time
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.title("My Snake Game")
 screen.bgcolor("#27374D")
+screen.listen()
+snake = Snake()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
+game_is_on = True
+while game_is_on:
+    screen.update()
+    time.sleep(0.05)
+    snake.move()
 screen.exitonclick()
